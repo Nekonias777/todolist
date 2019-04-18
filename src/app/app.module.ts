@@ -22,11 +22,19 @@ import {
   MatButtonModule,
   MatCheckboxModule
 } from '@angular/material';
+import { InitTodolistComponent } from './components/init-todolist/init-todolist.component';
+import { TodolistComponent } from './containers/todolist/todolist.component';
+import { TodoComponent } from './containers/todo/todo.component';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CurrentTodolistComponent
+    CurrentTodolistComponent,
+    InitTodolistComponent,
+    TodolistComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +43,8 @@ import {
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService),
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([TodolistEffects]),
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
+    AppRoutingModule,
     MatCardModule,
     MatGridListModule,
     MatIconModule,
@@ -52,7 +62,9 @@ import {
     MatButtonModule,
     MatCheckboxModule
   ],
-  providers: [TodolistService],
+  providers: [
+    TodolistService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,7 +8,9 @@ export enum ETodolistActions {
     GetTodolist = '[Todolist] Get Todolist',
     GetTodolistSuccess = '[Todolist] Get Todolist Success',
     FinishTodo = '[Todolist] Finish Todo',
-    FinishTodoSuccess = '[Todolist] Finish Todo Success'
+    FinishTodoSuccess = '[Todolist] Finish Todo Success',
+    GetTodo = '[Todolist] Get Todo',
+    GetTodoSuccess = '[Todolist] Get Todo Success'
 }
 
 export class GetTodolist implements Action {
@@ -29,4 +31,14 @@ export class FinishTodoSuccess implements Action {
     public readonly type = ETodolistActions.FinishTodoSuccess;
 }
 
-export type TodolistActions = GetTodolist | GetTodolistSuccess | FinishTodo | FinishTodoSuccess;
+export class GetTodo implements Action {
+    public readonly type = ETodolistActions.GetTodo;
+    constructor(public payload: number) {}
+}
+
+export class GetTodoSuccess implements Action {
+    public readonly type = ETodolistActions.GetTodoSuccess;
+    constructor(public payload: ITodolist) {}
+}
+
+export type TodolistActions = GetTodolist | GetTodolistSuccess | FinishTodo | FinishTodoSuccess | GetTodo | GetTodoSuccess;

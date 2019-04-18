@@ -28,6 +28,12 @@ export function todolistReducers(state = initialTodolistState, action: TodolistA
         case ETodolistActions.FinishTodoSuccess: {
             return state;
         }
+        case ETodolistActions.GetTodoSuccess: {
+            return {
+                ...state,
+                todo: action.payload
+            };
+        }
         default:
             return state;
     }

@@ -1,12 +1,10 @@
-import { async, TestBed, tick } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './../../store/reducers/app.reducers';
 
 import { CurrentTodolistComponent } from './current-todolist.component';
 import { MatCardModule, MatDividerModule, MatCheckboxModule } from '@angular/material';
-import { GetTodolist, FinishTodo } from './../../store/actions/todolist.actions';
-import { By } from '@angular/platform-browser';
 
 describe('CurrentTodolistComponent', () => {
 
@@ -36,18 +34,6 @@ describe('CurrentTodolistComponent', () => {
       expect(component).toBeTruthy();
     });
 
-    it('should dispatch the GetTodolist Action in the ngOnInit lifecycle', () => {
-      const action = new GetTodolist();
-      const { fixture } = setup();
-      const { store } = setup();
-      const spy = spyOn(store, 'dispatch');
-      fixture.detectChanges();
-      expect(spy).toHaveBeenCalledWith(action);
-    });
-
-    it('should dispatch the FinishTodo Action in the finishTodo button is clicked', () => {
-
-    });
   });
 
 });
