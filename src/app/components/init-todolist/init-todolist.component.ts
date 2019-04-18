@@ -1,8 +1,4 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { IAppState } from 'src/app/store/state/app.state';
-import { GetTodo } from 'src/app/store/actions/todolist.actions';
-import { selectTodo } from 'src/app/store/selectors/todolist.selectors';
+import { Component, Input } from '@angular/core';
 import { ITodolist } from 'src/app/models/todolist.interface';
 import { Router } from '@angular/router';
 
@@ -11,15 +7,13 @@ import { Router } from '@angular/router';
   templateUrl: './init-todolist.component.html',
   styleUrls: ['./init-todolist.component.scss']
 })
-export class InitTodolistComponent implements OnInit {
+export class InitTodolistComponent {
   @Input()
   todo: ITodolist;
 
   constructor(
     private router: Router
   ) {}
-
-  ngOnInit() { }
 
   back() {
     this.router.navigate(['/']);

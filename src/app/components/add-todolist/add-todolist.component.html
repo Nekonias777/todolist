@@ -1,0 +1,15 @@
+<div>
+    <h1 mat-dialog-title>Adding a new todo</h1>
+    <div mat-dialog-content>
+      <mat-form-field>
+        <input class="submit-title" matInput placeholder="title" value="Exemple" #title required>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea class="submit-desc" matInput placeholder="description" value="Exemple" #description></textarea>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button class="submit-button" mat-raised-button [disabled]="!title.value" (click)="addTodolist(title.value, description.value)">Add a Todo</button>
+      <button class="close-button" mat-raised-button (click)="closeDialog()">close</button> 
+    </div>
+  </div>

@@ -1,11 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { IAppState } from './../../store/state/app.state';
-import { selectTodolist } from './../../store/selectors/todolist.selectors';
-import { GetTodolist, FinishTodo } from './../../store/actions/todolist.actions';
+import { FinishTodo } from './../../store/actions/todolist.actions';
 import { ITodolist } from 'src/app/models/todolist.interface';
 import { MatDialog } from '@angular/material';
-import { InitTodolistComponent } from '../init-todolist/init-todolist.component';
+import { AddTodolistComponent } from '../add-todolist/add-todolist.component';
 
 @Component({
   selector: 'app-current-todolist',
@@ -19,7 +18,8 @@ export class CurrentTodolistComponent implements OnInit {
   todo: EventEmitter<number> = new EventEmitter();
 
   constructor(
-    private store: Store<IAppState>
+    private store: Store<IAppState>,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -44,11 +44,25 @@ export class CurrentTodolistComponent implements OnInit {
   }
 
   /**
-   * End the chosen todo from the list
-   * @param currentTodo The chosen todo to be ended
+   * Display the todo information
+   * @param id Id of the todo
    */
   openTodo(id: number) {
     this.todo.emit(id);
+  }
+
+  /**
+   * Open a dialog to add a new todo in the list
+   */
+  addTodo() {
+    const dialogRef = this.dialog.open(AddTodolistComponent, {
+      data: this.todolist.length,
+      width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }

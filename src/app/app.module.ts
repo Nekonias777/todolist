@@ -20,13 +20,16 @@ import {
   MatListModule,
   MatDividerModule,
   MatButtonModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatInputModule,
+  MatDialogModule
 } from '@angular/material';
 import { InitTodolistComponent } from './components/init-todolist/init-todolist.component';
 import { TodolistComponent } from './containers/todolist/todolist.component';
 import { TodoComponent } from './containers/todo/todo.component';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { AppRoutingModule } from './app-routing.module';
+import { AddTodolistComponent } from './components/add-todolist/add-todolist.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { AppRoutingModule } from './app-routing.module';
     CurrentTodolistComponent,
     InitTodolistComponent,
     TodolistComponent,
-    TodoComponent
+    TodoComponent,
+    AddTodolistComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,9 @@ import { AppRoutingModule } from './app-routing.module';
     MatListModule,
     MatDividerModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule,
+    MatInputModule
   ],
   exports: [
     MatCardModule,
@@ -60,7 +66,12 @@ import { AppRoutingModule } from './app-routing.module';
     MatListModule,
     MatDividerModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule,
+    MatInputModule
+  ],
+  entryComponents: [
+    AddTodolistComponent
   ],
   providers: [
     TodolistService

@@ -30,4 +30,14 @@ export class TodolistService {
       .put(`api/todolist/${todo.id}`, todo)
       .pipe(map(response => response as ITodolist[]));
   }
+
+  /**
+   * Add a new todo
+   * @param todo Todo
+   */
+  addTodo(todo: ITodolist): Observable<ITodolist> {
+    return this.http
+      .post(`api/todolist`, todo)
+      .pipe(map(response => response as ITodolist));
+  }
 }

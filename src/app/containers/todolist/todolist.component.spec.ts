@@ -2,7 +2,7 @@ import { async, TestBed } from '@angular/core/testing';
 import { TodolistComponent } from './todolist.component';
 import { Store, StoreModule } from '@ngrx/store';
 import { GetTodolist } from 'src/app/store/actions/todolist.actions';
-import { MatCardModule, MatCheckboxModule, MatDividerModule } from '@angular/material';
+import { MatCardModule, MatCheckboxModule, MatDividerModule, MatIconModule, MatDialogModule } from '@angular/material';
 import { appReducers } from 'src/app/store/reducers/app.reducers';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CurrentTodolistComponent } from 'src/app/components/current-todolist/current-todolist.component';
@@ -15,6 +15,8 @@ describe('TodolistComponent', () => {
         MatCardModule,
         MatDividerModule,
         MatCheckboxModule,
+        MatIconModule,
+        MatDialogModule,
         StoreModule.forRoot(appReducers),
         RouterTestingModule
       ],

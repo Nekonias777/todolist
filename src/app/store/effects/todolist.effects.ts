@@ -1,6 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Effect, ofType, Actions } from '@ngrx/effects';
-import { GetTodolist, ETodolistActions, GetTodolistSuccess, FinishTodo, FinishTodoSuccess, GetTodo, GetTodoSuccess } from '../actions/todolist.actions';
+import {
+    GetTodolist,
+    ETodolistActions,
+    GetTodolistSuccess,
+    FinishTodo,
+    FinishTodoSuccess,
+    GetTodo,
+    GetTodoSuccess,
+    AddTodo,
+    AddTodoSuccess
+} from '../actions/todolist.actions';
 import { switchMap, map, withLatestFrom } from 'rxjs/operators';
 import { TodolistService } from 'src/app/services/todolist.service';
 import { ITodolist } from '../../models/todolist.interface';
@@ -19,8 +29,6 @@ export class TodolistEffects {
             const open = todolist.filter(todo => todo.status !== 'Closed');
             const closed = todolist.filter(todo => todo.status === 'Closed');
             const newtodolist = closed.concat(open);
-            // console.log(newtodolist)
-
             return of(new GetTodolistSuccess(newtodolist.reverse()));
         })
     );
@@ -42,6 +50,15 @@ export class TodolistEffects {
         switchMap(([id, todos]) => {
           const selectedTodo = todos.filter(todo => todo.id === +id)[0];
           return of(new GetTodoSuccess(selectedTodo));
+        })
+    );
+
+    @Effect()
+    addTodo$ = this.actions$.pipe(
+        ofType<AddTodo>(ETodolistActions.AddTodo),
+        switchMap((actions) => this.todolistService.addTodo(actions.payload)),
+        switchMap((todo: ITodolist) => {
+            return of(new AddTodoSuccess(todo));
         })
     );
 

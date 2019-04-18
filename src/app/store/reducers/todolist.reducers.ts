@@ -34,6 +34,12 @@ export function todolistReducers(state = initialTodolistState, action: TodolistA
                 todo: action.payload
             };
         }
+        case ETodolistActions.AddTodoSuccess: {
+            return {
+                ...state,
+                todolist: [action.payload, ...state.todolist]
+            };
+        }
         default:
             return state;
     }

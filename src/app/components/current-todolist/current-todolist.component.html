@@ -1,4 +1,9 @@
 <div>
+  <button class="add-button" mat-fab color="primary" (click)="addTodo()">
+    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+  </button>
+</div>
+<div>
 <mat-card *ngFor="let todo of todolist; let i = index" class="todo-card">
   <mat-card-header>
     <mat-card-title class="todo-title"[ngStyle]="{'text-decoration': todo.status === 'Closed' ? 'line-through' : '' }">{{ todo.title }}</mat-card-title>
@@ -14,7 +19,7 @@
   </mat-card-content>
   <mat-divider></mat-divider>
   <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="openTodo(todo.id)">Open</button>
+    <button class="opentodo-button" mat-raised-button color="primary" (click)="openTodo(todo.id)">Open</button>
   </mat-card-actions>
 </mat-card>
 </div>
