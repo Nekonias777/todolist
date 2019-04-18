@@ -19,4 +19,15 @@ export class TodolistService {
       .get(`api/todolist`)
       .pipe(map(response => response as ITodolist[]));
   }
+
+  /**
+   * Update a given todo
+   * @param id Id
+   * @param todo Todo
+   */
+  updateTodo(todo: ITodolist): Observable<ITodolist[]> {
+    return this.http
+      .put(`api/todolist/${todo.id}`, todo)
+      .pipe(map(response => response as ITodolist[]));
+  }
 }

@@ -1,21 +1,21 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, TestBed, tick } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './../../store/reducers/app.reducers';
 
 import { CurrentTodolistComponent } from './current-todolist.component';
-import { MatCardModule, MatDividerModule } from '@angular/material';
-import { GetTodolist } from './../../store/actions/todolist.actions';
+import { MatCardModule, MatDividerModule, MatCheckboxModule } from '@angular/material';
+import { GetTodolist, FinishTodo } from './../../store/actions/todolist.actions';
+import { By } from '@angular/platform-browser';
 
 describe('CurrentTodolistComponent', () => {
-  // let component: CurrentTodolistComponent;
-  // let fixture: ComponentFixture<CurrentTodolistComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         MatCardModule,
         MatDividerModule,
+        MatCheckboxModule,
         StoreModule.forRoot(appReducers)
       ],
       declarations: [ CurrentTodolistComponent ]
@@ -43,6 +43,10 @@ describe('CurrentTodolistComponent', () => {
       const spy = spyOn(store, 'dispatch');
       fixture.detectChanges();
       expect(spy).toHaveBeenCalledWith(action);
+    });
+
+    it('should dispatch the FinishTodo Action in the finishTodo button is clicked', () => {
+
     });
   });
 

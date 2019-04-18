@@ -13,7 +13,15 @@ import { TodolistService } from './services/todolist.service';
 import { EffectsModule } from '@ngrx/effects';
 import { TodolistEffects } from './store/effects/todolist.effects';
 
-import { MatCardModule, MatGridListModule, MatIconModule, MatListModule, MatDividerModule } from '@angular/material';
+import {
+  MatCardModule,
+  MatGridListModule,
+  MatIconModule,
+  MatListModule,
+  MatDividerModule,
+  MatButtonModule,
+  MatCheckboxModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -31,14 +39,18 @@ import { MatCardModule, MatGridListModule, MatIconModule, MatListModule, MatDivi
     MatGridListModule,
     MatIconModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatButtonModule,
+    MatCheckboxModule
   ],
   exports: [
     MatCardModule,
     MatGridListModule,
     MatIconModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [TodolistService],
   bootstrap: [AppComponent]

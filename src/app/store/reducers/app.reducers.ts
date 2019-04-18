@@ -6,5 +6,5 @@ import { todolistReducers } from './todolist.reducers';
 
 export const appReducers: ActionReducerMap<IAppState, any> = {
   router: routerReducer,
-  todolist: todolistReducers,
+  todolist: todolistReducers
 };

@@ -1,6 +1,7 @@
-<mat-card *ngFor="let todo of todolist | async" class="todo-card">
+<mat-card *ngFor="let todo of todolist | async; let i = index" class="todo-card">
   <mat-card-header>
-    <mat-card-title class="todo-title">{{ todo.title }}</mat-card-title>
+    <mat-card-title class="todo-title"[ngStyle]="{'text-decoration': todo.status === 'Closed' ? 'line-through' : '' }">{{ todo.title }}</mat-card-title>
+    <mat-checkbox class="todo-checkbox" (change)="finishTodo(i, todo)" [checked]="todo.status === 'Closed'" [disabled]="todo.status === 'Closed'">Finish</mat-checkbox><br />
     <mat-card-subtitle class="todo-date">{{ todo.date | date }}</mat-card-subtitle>
   </mat-card-header>
   <mat-divider></mat-divider>
@@ -10,5 +11,3 @@
     </p>
   </mat-card-content>
 </mat-card>
-
-

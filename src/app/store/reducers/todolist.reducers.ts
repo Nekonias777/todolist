@@ -1,4 +1,4 @@
-import { initialTodolistState, ITodolistState } from '../state/todolist.state';
+import { initialTodolistState } from '../state/todolist.state';
 import { TodolistActions, ETodolistActions } from '../actions/todolist.actions';
 
 /**
@@ -6,13 +6,27 @@ import { TodolistActions, ETodolistActions } from '../actions/todolist.actions';
  * @param state State
  * @param action Action
  */
-export function todolistReducers(state = initialTodolistState, action: TodolistActions): ITodolistState {
+export function todolistReducers(state = initialTodolistState, action: TodolistActions) {
+
+    /**
+     * Switch use to determine the type of action to apply
+     */
     switch (action.type) {
         case ETodolistActions.GetTodolistSuccess: {
             return {
                 ...state,
                 todolist: action.payload
             };
+        }
+        case ETodolistActions.FinishTodo: {
+            return {
+                ...state,
+                ...state.todolist.splice(action.place, 1),
+                todolist: [...state.todolist, action.payload]
+            };
+        }
+        case ETodolistActions.FinishTodoSuccess: {
+            return state;
         }
         default:
             return state;
