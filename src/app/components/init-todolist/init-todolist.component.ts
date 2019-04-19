@@ -15,6 +15,9 @@ export class InitTodolistComponent {
     private router: Router
   ) {}
 
+  /**
+   * Return to the list of todo
+   */
   back() {
     this.router.navigate(['/']);
   }

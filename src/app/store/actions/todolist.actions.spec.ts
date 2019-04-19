@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { GetTodolist, GetTodolistSuccess, FinishTodo, FinishTodoSuccess, ETodolistActions, GetTodo, GetTodoSuccess } from './todolist.actions';
+import { GetTodolist, GetTodolistSuccess, FinishTodo, FinishTodoSuccess, ETodolistActions, GetTodo, GetTodoSuccess, AddTodo, AddTodoSuccess } from './todolist.actions';
 
 describe('TodolistActions', () => {
 
@@ -96,6 +96,28 @@ describe('TodolistActions', () => {
 
             expect({ ...action }).toEqual({
               type: ETodolistActions.GetTodoSuccess,
+              payload: mockTodolistData[0]
+            });
+        });
+    });
+
+    describe('AddTodo', () => {
+        it('should create an action', () => {
+            const action = new AddTodo(mockTodolistData[0]);
+
+            expect({ ...action }).toEqual({
+              type: ETodolistActions.AddTodo,
+              payload: mockTodolistData[0]
+            });
+        });
+    });
+
+    describe('AddTodoSuccess', () => {
+        it('should create an action', () => {
+            const action = new AddTodoSuccess(mockTodolistData[0]);
+
+            expect({ ...action }).toEqual({
+              type: ETodolistActions.AddTodoSuccess,
               payload: mockTodolistData[0]
             });
         });

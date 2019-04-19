@@ -73,10 +73,10 @@ describe('CurrentTodolistComponent', () => {
       const { component } = setup();
       const { fixture } = setup();
 
-      spyOn(component.todo, 'emit');
+      spyOn(component, 'openTodo');
 
       // Button null
-      const button = fixture.debugElement.nativeElement.querySelector('.open-todo-button');
+      const openButton = fixture.debugElement.nativeElement.querySelector('.open-button');
 
       // button.click();
       // fixture.detectChanges();
@@ -101,7 +101,7 @@ describe('CurrentTodolistComponent', () => {
       //   width: '250px'
       // })).toHaveBeenCalled();
 
-      
+
     });
 
   });

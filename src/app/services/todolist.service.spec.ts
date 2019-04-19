@@ -57,7 +57,7 @@ describe('TodolistService', () => {
       });
     });
 
-    it('should update the todo list', () => {
+    it('should update a todo', () => {
       const { todolistService, httpTestingController } = setup();
       const mockTodolistData = [
         {
@@ -83,12 +83,12 @@ describe('TodolistService', () => {
         }
       ];
       todolistService.updateTodo({
-        id: '0',
-        title: 'Todo Test 1',
-        description: 'This is the first test',
-        date: new Date(),
-        status: 'Closed'
-        }).subscribe(data => {
+          id: '0',
+          title: 'Todo Test 1',
+          description: 'This is the first test',
+          date: new Date(),
+          status: 'Closed'
+      }).subscribe(data => {
         expect(data.mapData).toEqual(mockTodolistData);
       });
 
@@ -101,9 +101,58 @@ describe('TodolistService', () => {
       });
     });
 
+    it('should add a todo', () => {
+      const { todolistService, httpTestingController } = setup();
+      const mockTodolistData = [
+        {
+            id: '0',
+            title: 'Todo Test 1',
+            description: 'This is the first test',
+            date: new Date(),
+            status: 'Closed'
+        },
+        {
+            id: '1',
+            title: 'Todo Test 2',
+            description: 'This is the second test',
+            date: new Date(),
+            status: 'In progress'
+        },
+        {
+            id: '2',
+            title: 'Todo Test 3',
+            description: 'This is the third test',
+            date: new Date(),
+            status: 'In progress'
+        }
+      ];
+      todolistService.addTodo({
+          id: '3',
+          title: 'Todo Test 4',
+          description: 'This is the fourth test',
+          date: new Date(),
+          status: 'In progress'
+      }).subscribe(data => {
+        expect(data.mapData).toEqual(mockTodolistData);
+      });
+
+      const req = httpTestingController.expectOne('api/todolist');
+
+      expect(req.request.method).toBe('POST');
+
+      req.flush({
+        mapData: mockTodolistData
+      });
+    });
+
     afterEach(() => {
       const { httpTestingController } = setup();
       httpTestingController.verify();
     });
+
+
   });
+
+
+
 });

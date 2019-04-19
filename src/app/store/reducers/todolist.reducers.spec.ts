@@ -52,6 +52,12 @@ describe('todolistReducers', () => {
             const state = fromReducer.todolistReducers(initialTodolistState, action);
             expect(state.todo).toBe(action.payload);
         });
+
+        it('should set todolist to action.payload', () => {
+            const action = new fromAction.AddTodoSuccess(mockTodolistData[1]);
+            const state = fromReducer.todolistReducers(initialTodolistState, action);
+            expect(state.todolist).toBe(state.todolist);
+        });
     });
 
 });

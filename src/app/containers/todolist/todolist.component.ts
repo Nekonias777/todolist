@@ -22,6 +22,10 @@ export class TodolistComponent implements OnInit {
     this.store.dispatch(new GetTodolist());
   }
 
+  /**
+   * Open the detailled page of a chosen todo
+   * @param id id of the todo
+   */
   navigateToTodo(id: number) {
     this.router.navigate(['todo', id]);
   }
